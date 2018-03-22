@@ -2,7 +2,22 @@
 
 function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
+  var option = document.getElementById('items');
+
+  for(var i=0; i < allProducts.length; i++) {
+    var optionElement = document.createElement ('option');
+    optionElement.textContent = allProducts[i].name;
+
+    option.appendChild(optionElement);
+
+  }
 }
+
+
+
+
+
+//DOM
 
 function handleSubmit(event) {
   // TODO: Prevent the page from reloading
@@ -12,7 +27,7 @@ function handleSubmit(event) {
   saveCartToLocalStorage();
   updateCounter();
   updateCartPreview();
-    
+
 }
 
 function addSelectedItemToCart() {
@@ -33,6 +48,13 @@ function updateCartPreview() {
 }
 
 // TODO: Put an event listener on the #catalog so that you can run the "handleSubmit" method when user submits the form (adding an item to their cart)
+
+
+var localProductsString = localStorage.getItem('product');
+var allProducts = JSON.parse(localProductsString);
+
+
+
 
 
 // Start it up ...
