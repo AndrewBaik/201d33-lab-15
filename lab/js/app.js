@@ -1,22 +1,21 @@
 'use strict';
 
-Product.allProducts = [];
+var allProducts = [];
+var allCart = [];
 
 
 // TODO: Create a "Cart" constructor that holds quantity, item, an an array of items in the cart
-var Cart = function(filePath, name) {
-  this.filePath = filePath;
+var Cart = function(name, quantity) {
   this.name = name;
-  this.quantity = 0;
-  this.item = 0;
-  Cart.allProducts = [];
+  this.quantity = quantity;
+  allCart.push(this);
 };
 
 // Product Contructor
 var Product = function(filePath, name) {
   this.filePath = filePath;
   this.name = name;
-  Product.allProducts.push(this);
+  allProducts.push(this);
 };
 
 function generateCatalog() {
@@ -42,11 +41,27 @@ function generateCatalog() {
   new Product('assets/usb.gif', 'USB');
   new Product('assets/water-can.jpg', 'Water Can');
   new Product('assets/wine-glass.jpg', 'Wine Glass');
+
+
   //Save onto the local storage
-  var loadImages = JSON.stringify(Product.allProducts);
+  var loadImages = JSON.stringify(allProducts);
   localStorage.setItem('product', loadImages);
+}
+
+//Pulls cart from local storage.
+function generateCartProducts(){
+  var quantCart = JSON.parse(localStorage.getItem('cart-quant'));
+  var nameCart = JSON.parse(localStorage.getItem('cart-name'));
+
+  for(var i in nameCart){
+    new Cart(nameCart[i], quantCart[i]);
+  }
+
 }
 
 // Initialize the app
 generateCatalog();
+generateCartProducts();
 
+
+//push cart products to local storage

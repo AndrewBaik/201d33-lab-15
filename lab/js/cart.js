@@ -3,9 +3,10 @@
 var Cart = [];
 
 function loadCart() {
-  // TODO: Pull the cart (if it exists) from Local Storage and make available to this app
-  var imgString = localStorage.getItem('cart');
-  var useableCart = JSON.parse(imgString);
+  // TODO: Pull the cart (if it exists) from Local Storage
+  var quantCart = JSON.parse(localStorage.getItem('cart-quant'));
+
+  var nameCart = JSON.parse(localStorage.getItem('cart-name'));
 
   if(useableCart && useableCart.length){
     Cart.allProducts = useableCart;
