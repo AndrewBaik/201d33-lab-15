@@ -22,7 +22,7 @@ function showCart() {
     var trElement = document.createElement('tr');
     var thElement = document.createElement('th');
     thElement.textContent = cartList[i].name;
-    trElement.appendChild(thELement);
+    trElement.appendChild(thElement);
 
     // TODO: Create a TD for the quantity and the item
     var tdElement = document.createElement('td');
