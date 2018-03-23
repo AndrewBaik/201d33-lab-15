@@ -5,17 +5,18 @@ var allCart = [];
 
 
 // TODO: Create a "Cart" constructor that holds quantity, item, an an array of items in the cart
-var Cart = function(name, quantity) {
+function Cart(name, quantity) {
   this.name = name;
   this.quantity = quantity;
   allCart.push(this);
-};
+}
 
 // Product Contructor
 var Product = function(filePath, name) {
   this.filePath = filePath;
   this.name = name;
   allProducts.push(this);
+
 };
 
 function generateCatalog() {
@@ -50,18 +51,23 @@ function generateCatalog() {
 
 //Pulls cart from local storage.
 function generateCartProducts(){
-  var quantCart = JSON.parse(localStorage.getItem('cart-quant'));
-  var nameCart = JSON.parse(localStorage.getItem('cart-name'));
+  var fromLocalStorageQuant = localStorage.getItem('cart-quant');
+  var fromLocalStorageName = localStorage.getItem('cart-name');
 
+  var quantCart = JSON.parse(fromLocalStorageQuant);
+  var nameCart = JSON.parse(fromLocalStorageName);
+  // quantCart = parseInt(quantCart);
+  console.log('quantcart', quantCart);
+  console.log('nameCart', nameCart);
   for(var i in nameCart){
-    new Cart(nameCart[i], quantCart[i]);
+    new Cart(nameCart[i], parseInt(quantCart[i]));
   }
-
 }
 
 // Initialize the app
 generateCatalog();
 generateCartProducts();
 
-
 //push cart products to local storage
+var toJSON = JSON.stringify(allCart);
+localStorage.setItem('cart-list', toJSON);

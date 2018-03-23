@@ -94,7 +94,7 @@ function updateCartPreview() {
 
 // TODO: Put an event listener on the #catalog so that you can run the "handleSubmit" method when user submits the form (adding an item to their cart)
 
-var formSubmit = document.getElementById('catalog').addEventListener('submit', handleSubmit);
+var formSubmit = document.getElementById('catalog');formSubmit.addEventListener('submit', handleSubmit);
 
 
 

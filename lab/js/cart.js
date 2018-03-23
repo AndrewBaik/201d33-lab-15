@@ -1,18 +1,13 @@
 'use strict';
 
 var Cart = [];
+var cartList = [];
 
 function loadCart() {
   // TODO: Pull the cart (if it exists) from Local Storage
-  var quantCart = JSON.parse(localStorage.getItem('cart-quant'));
-
-  var nameCart = JSON.parse(localStorage.getItem('cart-name'));
-
-  if(useableCart && useableCart.length){
-    Cart.allProducts = useableCart;
-    console.log('cart loaded from local storage');
-    return;
-  }
+  var notReadyToUse = localStorage.getItem('cart-list');
+  cartList = JSON.parse(notReadyToUse);
+  console.log('cartlist', cartList);
 }
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
@@ -21,17 +16,17 @@ function showCart() {
   var cartTable = document.getElementById('cart');
 
   // TODO: Iterate over the items in the cart
-  for(var i in Cart.allProducts){
+  for(var i in cartList){
 
     // TODO: Create a TR
     var trElement = document.createElement('tr');
     var thElement = document.createElement('th');
-    thElement.textContent = Cart.allProduct[i].name;
+    thElement.textContent = cartList[i].name;
     trElement.appendChild(thELement);
 
     // TODO: Create a TD for the quantity and the item
     var tdElement = document.createElement('td');
-    tdElement.textContent = Cart.allProduct[i].quantity;
+    tdElement.textContent = cartList[i].quantity;
     trElement.appendChild(tdElement);
     cartTable.appendChild(trElement);
   }
